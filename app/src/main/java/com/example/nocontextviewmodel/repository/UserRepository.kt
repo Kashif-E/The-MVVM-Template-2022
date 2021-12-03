@@ -13,7 +13,7 @@ class UserRepository(private val responseHandler: ResponseHandler) {
     suspend fun stimulateSocketTimeout() = flow {
 
         //stimulate a network call
-        kotlinx.coroutines.delay(100)
+        kotlinx.coroutines.delay(500)
         emit(
             //stimulate a failed network response
             if (false) {
@@ -49,7 +49,7 @@ class UserRepository(private val responseHandler: ResponseHandler) {
     suspend fun stimulateUnAuthorizedError() = flow {
 
         //stimulate a network call
-        kotlinx.coroutines.delay(100)
+        kotlinx.coroutines.delay(500)
         emit(
             //stimulate a failed network response
             if (false) {
@@ -84,7 +84,7 @@ class UserRepository(private val responseHandler: ResponseHandler) {
     suspend fun stimulateSuccessfulNetworkCall()= flow {
 
         //stimulate a network call
-        kotlinx.coroutines.delay(100)
+        kotlinx.coroutines.delay(500)
 
 
         emit(
@@ -120,7 +120,7 @@ class UserRepository(private val responseHandler: ResponseHandler) {
     suspend fun throwAndHandleException()= flow {
 
         //stimulate a network call
-        kotlinx.coroutines.delay(100)
+        kotlinx.coroutines.delay(500)
 
         throw ConnectivityInterceptor.NoNetworkException()
         emit(
