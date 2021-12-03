@@ -9,6 +9,8 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.example.nocontextviewmodel.base.BaseActivity
 import com.example.nocontextviewmodel.databinding.ActivityMainBinding
+import com.example.nocontextviewmodel.utils.inVisible
+import com.example.nocontextviewmodel.utils.visible
 import com.example.nocontextviewmodel.viewmodels.ActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -37,9 +39,9 @@ class MainActivity : BaseActivity() {
             launch {
                 viewModel.showProgress.flowWithLifecycle(lifecycle, Lifecycle.State.STARTED).collect {showProgressBar->
                     if (showProgressBar){
-                        binding.progressBar.visibility = View.VISIBLE
+                        binding.progressBar.visible()
                     }else{
-                        binding.progressBar.visibility = View.INVISIBLE
+                        binding.progressBar.inVisible()
                     }
                 }
             }
