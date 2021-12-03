@@ -41,11 +41,7 @@ open class ResponseHandler {
         }
     }
 
-    fun <T : Any> handleException(message: String): Resource.CustomMessages {
-        Log.d("response exception", "Message$message")
-        Log.d("response exception", "FormattedMessage${getErrorType(message)}")
-        return Resource.CustomMessages.SomethingWentWrong
-    }
+
 
     fun <T : Any> handleException(statusCode: Int): Resource.CustomMessages {
         return getErrorType(statusCode)

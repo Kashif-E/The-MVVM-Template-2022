@@ -1,7 +1,6 @@
 package com.example.nocontextviewmodel
 
 import android.os.Bundle
-import android.view.View
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Lifecycle

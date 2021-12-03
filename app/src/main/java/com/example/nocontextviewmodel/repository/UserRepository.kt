@@ -35,7 +35,10 @@ class UserRepository(private val responseHandler: ResponseHandler) {
         e.printStackTrace()
         emit(
 
-            Resource.Error(Resource.CustomMessages.NetworkError)
+            Resource.Error(
+                responseHandler
+                    .handleException<Throwable>(e)
+            )
 
         )
 
@@ -68,7 +71,10 @@ class UserRepository(private val responseHandler: ResponseHandler) {
         e.printStackTrace()
         emit(
 
-            Resource.Error(Resource.CustomMessages.NetworkError)
+            Resource.Error(
+                responseHandler
+                    .handleException<Throwable>(e)
+            )
 
         )
 
@@ -100,8 +106,10 @@ class UserRepository(private val responseHandler: ResponseHandler) {
         e.printStackTrace()
         emit(
 
-            Resource.Error(Resource.CustomMessages.NetworkError)
-
+            Resource.Error(
+                responseHandler
+                    .handleException<Throwable>(e)
+            )
         )
 
 
