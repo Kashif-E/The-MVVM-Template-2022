@@ -1,4 +1,4 @@
-# NoContextViewModel
+# Clean ViewModel with Sealed Classes 
 
 Following are the purposes of this repo
 
