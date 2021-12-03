@@ -85,4 +85,26 @@ class ActivityViewModel @Inject constructor(private val userRepository: UserRepo
 
         }
     }
+
+    fun throwAndHandleException() {
+        showProgressBar()
+        viewModelScope.launch(Dispatchers.IO) {
+            userRepository.throwAndHandleException().flowOn(Dispatchers.IO)
+                .collectLatest { response ->
+                    hideProgressBar()
+                    when (response) {
+
+                        is Resource.Success -> {
+                            _dataStateFlow.emit(response)
+                        }
+                        else -> {
+                            onResponseComplete(response.error)
+                        }
+
+                    }
+
+                }
+
+        }
+    }
 }

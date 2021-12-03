@@ -1,5 +1,6 @@
 package com.example.nocontextviewmodel.repository
 
+import com.example.nocontextviewmodel.utils.ConnectivityInterceptor
 import com.example.nocontextviewmodel.utils.Resource
 import com.example.nocontextviewmodel.utils.ResponseHandler
 import kotlinx.coroutines.Dispatchers
@@ -87,7 +88,43 @@ class UserRepository(private val responseHandler: ResponseHandler) {
         //stimulate a network call
         kotlinx.coroutines.delay(100)
 
-        throw UnknownHostException()
+
+        emit(
+            //stimulate a failed network response
+            if (true) {
+
+
+                responseHandler
+                    .handleSuccess("Sealed classes are awesome")
+
+
+            } else {
+                Resource.Error(
+                    responseHandler
+                        .handleException<Int>(401)
+                )
+
+
+            }
+        )
+    }.flowOn(Dispatchers.IO).catch { e ->
+        e.printStackTrace()
+        emit(
+
+            Resource.Error(
+                responseHandler
+                    .handleException<Throwable>(e)
+            )
+        )
+
+
+    }
+    suspend fun throwAndHandleException()= flow {
+
+        //stimulate a network call
+        kotlinx.coroutines.delay(100)
+
+        throw ConnectivityInterceptor.NoNetworkException()
         emit(
             //stimulate a failed network response
             if (true) {
