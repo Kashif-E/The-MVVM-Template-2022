@@ -1,12 +1,6 @@
 package com.example.nocontextviewmodel.utils
 
 
-import android.util.Log
-import okio.Timeout
-import org.json.JSONException
-import org.json.JSONObject
-import java.lang.Exception
-
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
@@ -71,49 +65,6 @@ private fun getErrorType(code: Int): Resource.CustomMessages {
     }
 }
 
-private fun getErrorType(message: String): String {
 
 
-    return if (isJSONValid(message)) {
-        val msg = getMessageJSON(message)
-        if (msg != "") {
-            msg
-        } else {
-            message.substringAfter(":").replace("}", "")
 
-        }
-
-    } else {
-        message.substringAfter(":").replace("}", "")
-
-    }
-
-
-}
-
-fun isJSONValid(message: String): Boolean {
-    try {
-        val json = JSONObject(message)
-        json.getString("message")
-    } catch (ex: JSONException) {
-        return false
-    }
-    return true
-}
-
-fun getMessageJSON(message: String): String {
-    val messageString: String
-    return try {
-        val json = JSONObject(message)
-        messageString = json.getString("message")
-        if (isJSONValid(messageString)) {
-            getMessageJSON(messageString)
-        } else {
-            messageString
-        }
-
-    } catch (ex: JSONException) {
-        message
-    }
-
-}
