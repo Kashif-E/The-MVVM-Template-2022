@@ -6,6 +6,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import java.net.UnknownHostException
+import java.util.concurrent.TimeoutException
 
 class UserRepository(private val responseHandler: ResponseHandler) {
 
@@ -84,6 +86,8 @@ class UserRepository(private val responseHandler: ResponseHandler) {
 
         //stimulate a network call
         kotlinx.coroutines.delay(100)
+
+        throw UnknownHostException()
         emit(
             //stimulate a failed network response
             if (true) {

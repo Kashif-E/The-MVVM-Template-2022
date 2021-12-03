@@ -2,14 +2,15 @@ package com.example.nocontextviewmodel.utils
 
 
 import android.util.Log
+import okio.Timeout
 import org.json.JSONException
 import org.json.JSONObject
+import java.lang.Exception
 
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
-
-
+import java.util.concurrent.TimeoutException
 
 
 enum class ErrorCodes(val code: Int) {
@@ -30,9 +31,13 @@ open class ResponseHandler {
         return Resource.Success(data)
     }
 
-    fun <T : Any> handleException(e: Throwable): Resource.CustomMessages {
-        return when (e) {
+    fun <T : Any> handleException(throwable: Throwable): Resource.CustomMessages {
 
+
+        return when ( Exception(throwable)) {
+
+
+            is  TimeoutException -> Resource.CustomMessages.Timeout
             is ConnectivityInterceptor.NoNetworkException -> Resource.CustomMessages.NoInternet
             is UnknownHostException -> Resource.CustomMessages.ServerBusy
             is ConnectException -> Resource.CustomMessages.NoInternet
