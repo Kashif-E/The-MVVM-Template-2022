@@ -7,12 +7,12 @@ package com.example.nocontextviewmodel.utils
 </T> */
 sealed  class Resource<T>(
     val data: T? = null,
-    val error : CustomMessages= CustomMessages.SomethingWentWrong
+    val error : CustomMessages= CustomMessages.SomethingWentWrong("Something went wrong.")
 ) {
     class Success<T>(data: T?) : Resource<T>(data)
     class Loading<T> : Resource<T>()
     class Error<T>(customMessages: CustomMessages):Resource<T>(error =  customMessages)
-    sealed class CustomMessages  {
+    sealed class CustomMessages(val message: String="")  {
         object BusinessDetailsUpdatedSuccessfully: CustomMessages()
         object EmptyOtp: CustomMessages()
         object InvalidOtp : CustomMessages()
@@ -34,7 +34,7 @@ sealed  class Resource<T>(
         object NotAcceptable : CustomMessages()
         object ServiceUnavailable : CustomMessages()
         object Forbidden : CustomMessages()
-        object SomethingWentWrong : CustomMessages()
+        data class SomethingWentWrong(val customMessage :String) : CustomMessages(customMessage)
 
 
     }
