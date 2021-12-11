@@ -61,7 +61,7 @@ private fun getErrorType(code: Int): Resource.CustomMessages {
         ErrorCodes.NotAcceptable.code -> Resource.CustomMessages.NotAcceptable
         ErrorCodes.ServiceUnavailable.code -> Resource.CustomMessages.ServiceUnavailable
         ErrorCodes.Forbidden.code -> Resource.CustomMessages.Forbidden
-        else -> Resource.CustomMessages.SomethingWentWrong
+        else -> Resource.CustomMessages.SomethingWentWrong("An error Occured with code $code")
     }
 }
 
