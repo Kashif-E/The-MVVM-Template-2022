@@ -1,5 +1,7 @@
 # Clean ViewModel with Sealed Classes 
 
+<a href="https://www.buymeacoffee.com/kashifmehmood"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=kashifmehmood&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" /></a>
+
 Following are the purposes of this repo
 
 1. Showing how you can remove the need of context in ViewModels. </br>
